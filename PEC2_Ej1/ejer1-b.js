@@ -30,11 +30,13 @@ const users = [
 //por eso sale más tarde que los logs de pantalla.
 console.log('findOne success');
 findOne(users, { key: 'name', value: 'Carlos' })
-    .then(onSuccess, onError)
+    .then(onSuccess)
+    .catch(onError)
 
 console.log('findOne error');
 findOne(users, { key: 'name', value: 'Fermin' })
-    .then(onSuccess, onError)
+    .then(onSuccess)
+    .catch(onError)
 
 /*
 findOne success
