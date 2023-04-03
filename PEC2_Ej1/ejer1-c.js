@@ -27,41 +27,26 @@ const users = [
 //pero el resultado de la salida findOne demora 2 segundos desde su ejecución
 //por eso sale más tarde que los logs de pantalla.
 console.log('findOne success');
-
+process(users, { key: 'name', value: 'Carlos' });
 
 
 console.log('findOne error');
-//findOne(users, { key: 'name', value: 'Fermin' })
+process(users, { key: 'name', value: 'Fermin' })
 
 
 /*
-findOne success
-findOne error
- //wait 2 seconds
-user: Carlos
-ERROR: Element Not Found
+    We need to put the whole thing inside a function due to await/async not working outside a function
+    on the other hand, the promise handles to events: onSuccess and onError which will be handled by try/catch
 */
-async function main1() {
+async function process(list, { key, value }) {
     try {
-        const f = await findOne(users, { key: 'name', value: 'Carlos' });
-        //Definición de funciones callback: onSucess y onError
+        //If goes fine do this
+        const f = await findOne(list, { key: key, value: value });
         console.log(`user: ${f.name}`);
 
     } catch (err) {
-        console.log(err);
+        //If goes wrong, show message
+        console.log(err.msg);
     }
 
 }
-
-async function main2() {
-    try {
-
-        const v = await findOne(users, { key: 'name', value: 'Fermin' });
-    } catch (err) {
-        console.log(err);
-    }
-
-}
-
-main1();
-//main2();
