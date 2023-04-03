@@ -27,11 +27,12 @@ const users = [
 //pero el resultado de la salida findOne demora 2 segundos desde su ejecución
 //por eso sale más tarde que los logs de pantalla.
 console.log('findOne success');
-process(users, { key: 'name', value: 'Carlos' });
+
+// passing an array of functions to static method all execute the promises in parallel
+Promise.all([process(users, { key: 'name', value: 'Carlos' }), process(users, { key: 'name', value: 'Fermin' })])
 
 
 console.log('findOne error');
-process(users, { key: 'name', value: 'Fermin' })
 
 
 /*
